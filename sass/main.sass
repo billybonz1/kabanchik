@@ -1,0 +1,232 @@
+@import "bourbon"
+@import "vars.sass"
+
+//Load Libs SASS
+@import "app/libs/animate/animate.sass"
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+body
+	max-height: 100%
+	overflow: hidden
+//Custom Styles Here
+
+@include keyframes(circlehoverwrap)
+	0%
+		transform: scale(1)
+	50%
+		transform: scale(1.2)
+	100%
+		transform: scale(1)
+		background: #ccc
+@include keyframes(circlehoverin)
+	0%
+		transform: scale(1)
+	50%
+		transform: scale(0.9)
+	100%
+		transform: scale(1)
+		background: #ccc
+
+@include keyframes(circleoutwrap)
+	0%
+		transform: scale(1)
+	40%
+		transform: scale(1.2)
+	60%
+		transform: scale(1)
+	80%
+		transform: scale(1.2)
+	100%
+		transform: scale(1)
+		background: #ccc
+@include keyframes(circleoutin)
+	0%
+		transform: scale(1)
+	50%
+		transform: scale(0.9)
+	100%
+		transform: scale(1)
+		background: #000
+
+
+@include keyframes(textup)
+	0%
+		top: 35%
+		-webkit-filter: url(#blur)
+		filter: url(#blur)
+		-webkit-filter: blur(4px)
+		filter: blur(4px)
+	100%
+		top: -421%
+@include keyframes(textdown)
+	0%
+		top: -421%
+		-webkit-filter: url(#blur)
+		filter: url(#blur)
+		-webkit-filter: blur(4px)
+		filter: blur(4px)
+	100%
+		top: 35%
+
+@include keyframes(whitecircleout)
+	0%
+		transform: scale(0)
+	100%
+		transform: scale(3)
+		opacity: 0
+		background: #ccc
+
+@include keyframes(whitecirclein)
+	0%
+		transform: scale(3)
+		opacity: 0
+	100%
+		transform: scale(0)
+		opacity: 1
+		background: #fff
+@include keyframes(line)
+	0%
+		left: -10%
+	100%
+		left: 350%
+.circle
+	width: 200px
+	height: 200px
+	border: 20px solid #ccc
+	background: #fff
+	border-radius: 200px
+	overflow: hidden
+	position: absolute
+	cursor: pointer
+	animation: 1s circleoutwrap ease both paused
+	& > div
+		width: 100%
+		height: 100%
+		background: #000
+		border-radius: 200px
+		position: relative
+		animation: 1s circleoutin ease both paused
+
+	span
+		display: block
+		color: #fff
+		font-size: 20px
+		text-align: center
+		margin-bottom: 90px
+		text-transform: uppercase
+	.text
+		top: 35%
+		position: absolute
+		width: 100%
+
+
+
+	.white
+		width: 40px
+		height: 40px
+		background: #fff
+		top: 50%
+		left: 50%
+		margin-top: -20px
+		margin-left: -20px
+		border-radius: 100px
+		position: absolute
+		transform: scale(0)
+		animation: .4s whitecirclein ease both paused
+	&.begin
+		animation-play-state: running
+		.text
+			animation: .8s textdown ease both paused
+		& > div,.text,.white
+			animation-play-state: running
+
+	&.animated
+		cursor: pointer
+		animation: .5s circlehoverwrap ease both
+		& > div
+			animation: .5s circlehoverin ease both
+		.text
+			animation: .8s textup ease both
+		.white
+			animation: .2s whitecircleout ease both
+
+
+.center-logo
+	width: 400px
+	height: 400px
+	border-radius: 400px
+	background: #000
+	border: 20px solid #ccc
+	margin: 10% auto
+	position: relative
+
+.menu-home
+	left: -80%
+	top: 20%
+
+.menu-services
+	right: -80%
+	top: 20%
+
+.menu-about
+	left: -60%
+	top: 92%
+.menu-mailus
+	right: -60%
+	top: 92%
+.menu-folio
+	left: 50%
+	margin-left: -100px
+	top: 125%
+.line
+	width: 100%
+	height: 1px
+	background: #ccc
+	position: absolute
+	top: 48%
+	&:after
+		content: ""
+		border: 5px solid transparent
+		border-right-width: 10px
+		border-left: 10px solid #000
+		display: block
+		position: absolute
+		top: -5px
+		left: -10%
+		animation: 4s line infinite
+	&.second-line
+		transform: rotateZ(42deg)
+		&:after
+			animation-delay: 7s
+	&.third-line
+		transform: rotateZ(-42deg)
+		&:after
+			animation-delay: 9s
+	&.fourth-line
+		transform: rotateZ(-90deg)
+		&:after
+			animation-delay: 12s
+
+//ALWAYS END
+@import "media"
