@@ -33,5 +33,10 @@ $(function() {
 		function () {
 			$(this).toggleClass("animated");
 		}
-	);
+	).on("click",function(){
+		$(".circle-main").addClass("animated");
+		$(".circle-main").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+			$(this).removeClass("animated");
+		});
+	});
 });

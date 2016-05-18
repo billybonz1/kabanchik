@@ -41,7 +41,39 @@
 
 </head>
 
-<body>
+<body class="red">
+<style>
+	@-webkit-keyframes rotate {
+		0%   { transform: rotateX(0deg); }
+		100% { transform: rotateX(3000deg); }
+	}
+	.test-circle {
+		width: 200px;
+		height: 200px;
+		background: #ccc;
+		border-radius: 100%;
+		padding: 20px;
+		position: relative;
+	}
+
+	.test-circle div {
+		width: 80%;
+		height: 80%;
+		border-radius: 100%;
+		background: rgba(0, 0, 0, 0.54);
+		position: absolute;
+		box-sizing: border-box;
+	}
+	.test-circle div:first-child{
+		-webkit-animation: 1s rotate infinite;
+		background: #000;
+	}
+</style>
+<!--<div class="test-circle">
+	<div></div>
+	<div></div>
+</div>-->
+	<div class="bg"></div>
 	<div class="lines">
 		<div class="main-line line"></div>
 		<div class="second-line line"></div>
@@ -50,6 +82,27 @@
 	</div>
 	<!-- Здесь пишем код -->
 	<div class="center-logo">
+		<div class="circle-main">
+			<div>
+
+			</div>
+			<div></div>
+			<div>
+
+			</div>
+			<div class="text-wrap">
+				<div class="text">
+					<span>Home1</span>
+					<span>Home1</span>
+					<span>Home1</span>
+					<span>Home1</span>
+					<span>Home1</span>
+					<span>Home1</span>
+					<span>Home1</span>
+				</div>
+			</div>
+
+		</div>
 		<div class="circle menu-home">
 			<div>
 				<div class="text">
