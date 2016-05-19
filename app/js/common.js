@@ -39,4 +39,8 @@ $(function() {
 			$(this).removeClass("animated");
 		});
 	});
+
+	$(".colorpicker div").on("click",function(){
+		$("body").attr("class","").addClass($(this).attr("class"));
+	});
 });

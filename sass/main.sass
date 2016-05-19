@@ -40,9 +40,14 @@ body
 	top: 0
 	left: 0
 	opacity: 0.5
-$bgcolor1: #364961
-$bgcolor2: #963D3D
 
+header
+	width: 100%
+	height: 138px
+	background: #ccc
+	position: relative
+	z-index: 1
+	top: 35px
 
 
 @include keyframes(circlehoverwrap)
@@ -74,34 +79,53 @@ $bgcolor2: #963D3D
 	100%
 		transform: scale(1)
 		background: #ccc
-@include keyframes(circleoutin)
-	0%
-		transform: scale(1)
-	50%
-		transform: scale(0.9)
-	100%
-		transform: scale(1)
-		background: $bgcolor1
 
-@include keyframes(circleoutinred)
-	0%
-		transform: scale(1)
-	50%
-		transform: scale(0.9)
-	100%
-		transform: scale(1)
-		background: $bgcolor2
+$status-colors: (red: #963D3D,blue: #364961,grey: #444444,green: #264A42)
+
+
+.colorpicker
+	position: absolute
+	left: 20px
+	top: 0
+	z-index: 2
+	div
+		width: 30px
+		height: 30px
+		cursor: pointer
+		transition: .2s all
+		margin-top: 6px
+		&:first-child
+			margin-top: 0px
+		&.red
+			background: #963D3D
+		@each $status, $color in $status-colors
+			&.#{$status}
+				background: $color
+		&:hover
+			transform: scale(1.1)
+			box-shadow: 0px 0px 5px 0px
+
+@each $status, $color in $status-colors
+	@include keyframes(circleoutin-#{$status})
+		0%
+			transform: scale(1)
+		50%
+			transform: scale(0.9)
+		100%
+			transform: scale(1)
+			background: $color
+
 
 
 @include keyframes(textup)
 	0%
-		top: 35%
+		top: 40%
 		-webkit-filter: url(#blur)
 		filter: url(#blur)
 		-webkit-filter: blur(4px)
 		filter: blur(4px)
 	100%
-		top: -422%
+		top: -391%
 @include keyframes(textup2)
 	0%
 		top: 35%
@@ -113,13 +137,13 @@ $bgcolor2: #963D3D
 		top: -355%
 @include keyframes(textdown)
 	0%
-		top: -422%
+		top: -391%
 		-webkit-filter: url(#blur)
 		filter: url(#blur)
 		-webkit-filter: blur(4px)
 		filter: blur(4px)
 	100%
-		top: 35%
+		top: 40%
 
 
 @include keyframes(whitecircleout)
@@ -171,14 +195,14 @@ $bgcolor2: #963D3D
 	& > div
 		width: 100%
 		height: 100%
-		background: $bgcolor1
 		transition: .2s all
 		border-radius: 200px
 		position: relative
 		animation: 1s circleoutin ease both paused
-	.red & > div
-		background: $bgcolor2
-		animation: 1s circleoutinred ease both paused
+	@each $status, $color in $status-colors
+		.#{$status} & > div
+			background: $color
+			animation: 1s circleoutinred ease both paused
 	span
 		display: block
 		color: #fff
@@ -187,7 +211,7 @@ $bgcolor2: #963D3D
 		margin-bottom: 90px
 		text-transform: uppercase
 	.text
-		top: 39%
+		top: 40%
 		position: absolute
 		width: 100%
 
@@ -224,7 +248,7 @@ $bgcolor2: #963D3D
 
 
 .center-logo
-	margin: 10% auto
+	margin: 85px auto
 	position: relative
 	width: 1200px
 	height: 400px
@@ -266,14 +290,15 @@ $bgcolor2: #963D3D
 			text-transform: uppercase
 		& > div:first-child
 			transition: .2s all
-			background: $bgcolor1
 			z-index: 2
 			text-align: center
 			color: #fff
 			font-weight: bold
 			line-height: 289px
-		.red & > div:first-child
-			background: $bgcolor2
+		@each $status, $color in $status-colors
+			.#{$status} & > div:first-child
+				background: $color
+				animation: 1s circleoutinred ease both paused
 		&.animated > div:first-child
 			animation: 1.5s rotate ease-out forwards
 		& > div:nth-child(3)
